@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://lhyqy5.github.com/atom.xml" rel="self"/>
+  <link href="http://lhyqy5.github.com/"/>
+  <updated>2012-04-25T18:04:36+08:00</updated>
+  <id>http://lhyqy5.github.com/</id>
+  <author>
+    <name><![CDATA[lhyqy5]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[hello world]]></title>
+    <link href="http://lhyqy5.github.com/blog/2012/04/20/hello-word/"/>
+    <updated>2012-04-20T15:34:00+08:00</updated>
+    <id>http://lhyqy5.github.com/blog/2012/04/20/hello-word</id>
+    <content type="html"><![CDATA[<p>hello world</p>
+
+<p><a href="https://google.com" title="google">google</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int a=5;
+</span><span class='line'>int b=a+3;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I get 10 times more traffic from <a href="http://google.com/" title="Google">Google</a> than from
+<a href="http://search.yahoo.com/" title="Yahoo Search">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search">MSN</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
