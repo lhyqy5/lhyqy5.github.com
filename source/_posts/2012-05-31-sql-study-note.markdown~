@@ -1,0 +1,158 @@
+---
+layout: post
+title: "SQL学习笔记"
+date: 2012-05-31 10:50
+comments: true
+categories: 笔记{not}
+---
+
+##怎样能把执行结果后的存储过程作为表 
+
+存储过程返回的行集结构可预知那么先建临时表再 insert 临时表 exec 存储过程。
+{% codeblock lang:sql %}
+create   table   #table(columns   types   .....)--声明一个临时表   
+insert   into   #table   exec   dbo.yourStoredProcedure--用你的存储过程向临时表添加记录   
+select   #table   --使用你的临时表  
+{% endcodeblock %}
+
+如果不可预知返回的结构，那么用openrowset之类语句。
+{% codeblock lang:sql %}
+--1调用存储过程
+exec 存储过程名 参数
+--2当表使用
+select a.*,b.* from tb b inner join (
+select * from openrowset('sqloledb','ip/server';'sa';'pwd','exec 库.dbo.存储过程'))a
+on a.条件=b.条件 
+{% endcodeblock %}
+
+##SQL Server：表变量的声明和赋值
+{% codeblock lang:sql %}
+DECLARE @tempTable TABLE (strVal int);
+
+INSERT INTO @tempTable 
+SELECT * FROM EXAMPLE_TABLE; --与@tempTable表结构一致
+
+SELECT * FROM @tempTable;
+{% endcodeblock %}
+
+<!--more-->
+##公用表表达式(CTE)
+**公用表表达式(CTE)的定义**
+公用表达式的定义非常简单，只包含三部分：
+
+*  公用表表达式的名字（在WITH之后）
+*  所涉及的列名（可选）
+*  一个SELECT语句(紧跟AS之后)
+
+{% codeblock 在MSDN中的原型 lang:sql %}	
+WITH expression_name [ ( column_name [,...n] ) ] 
+AS 
+( CTE_query_definition ) 
+{% endcodeblock %} 
+
+按照是否递归，可以将公用表（CTE）表达式分为递归公用表表达式和非递归公用表表达式.
+
+*	非递归公用表表达式（CTE）是查询结果仅仅一次性返回一个结果集用于外部查询调用。并不在其定义的语句中调用其自身的CTE	
+	非递归公用表表达式（CTE）的使用方式和视图以及子查询一致
+*	递归公用表表达式很像派生表（Derived Tables ），指的是在CTE内的语句中调用其自身的CTE.与派生表不同的是，CTE可以在一次定义多次进行派生递归.对于递归的概念，是指一个函数或是过程直接或者间接的调用其自身
+
+	
+## #temp 局部变量表，##全局变量表，@temp临时表  [[原文]](http://topic.csdn.net/u/20071009/07/eeace098-482a-488a-a248-4501889235ac.html)
+
+{% codeblock lang:sql %}
+declare @temp table(id int identity(1,1),Name varchar(10))
+insert @temp select 'aa'
+insert @temp select 'bb'
+select * from @temp
+{% endcodeblock %} 
+
+**Transact-SQL 参考**  
+*table*
+
+一种特殊的数据类型，用于存储结果集以供后续处理。该数据类型主要用于临时存储一组行，这些行将作为表值函数的结果集返回
+。
+**语法**
+
+说明 使用 DECLARE @local_variable 声明 `table `类型的变量。
+{% codeblock lang:sql %}
+table_type_definition ::=
+  TABLE ( { column_definition | table_constraint } [ ,...n ] )  
+
+column_definition ::=
+  column_name scalar_data_type
+  [ COLLATE collation_definition ]
+  [ [ DEFAULT constant_expression ] | IDENTITY [ ( seed , increment ) ] ]
+  [ ROWGUIDCOL ]
+  [ column_constraint ] [ ...n ]  
+
+column_constraint ::=
+  { [ NULL | NOT NULL ]
+  | [ PRIMARY KEY | UNIQUE ]
+  | CHECK ( logical_expression )
+  }  
+
+table_constraint ::=  
+  { { PRIMARY KEY | UNIQUE } ( column_name [ ,...n ] )
+  | CHECK ( search_condition )  
+  }  
+{% endcodeblock %} 
+
+**参数**
+
+*table_type_definition*
+
+与` CREATE TABLE` 中定义表所用的信息子集相同的信息子集。表声明包括列定义、名称、数据类型和约束。允许的约束类型仅为 `PRIMARY KEY`、`UNIQUE KEY` 和 `NULL`。
+有关语法的更多信息，请参见 `CREATE TABLE`、`CREATE FUNCTION` 和 `DECLARE @local_variable`。
+
+*collation_definition*
+
+是由 Microsoft® Windows™ 区域设置和比较风格、Windows 区域设置和二进制表示法或 Microsoft SQL Server™ 排序规则组成的列的排序规则。
+
+**注释**
+
+可将函数和变量声明为 `table` 类型。`table` 变量可用于函数、存储过程和批处理中。
+
+尽可能使用表变量而不使用临时表。`table` 变量有以下优点：  
+
+*	table 变量的行为类似于局部变量，有明确定义的作用域。该作用域为声明该变量的函数、存储过程或批处理。  
+*	在其作用域内，`table` 变量可像常规表那样使用。该变量可应用于 `SELECT`、`INSERT`、`UPDATE` 和 `DELETE` 语句中用到表或表的表达式的地方。但是，`table` 不能用在下列语句中：
+``` sql
+INSERT INTO table_variable EXEC [存储过程]。
+SELECT select_list INTO table_variable [语句]。
+```
+*	在定义 table 变量的函数、存储过程或批处理结束时，自动清除 table 变量。
+*	在存储过程中使用表变量与使用临时表相比，减少了存储过程的重新编译量。
+*	涉及表变量的事务只在表变量更新期间存在。这样就减少了表变量对锁定和记录资源的需求。  
+*	不支持在表变量之间进行赋值操作。另外，由于表变量作用域有限，并且不是持久数据库的一部分，因而不受事务回滚的影响。
+
+SomeTip
+---
+**计算字段**
+
+``` sql
+SELECT *,AlterFlag = case when l.RegTime is null or d.DT_LastModifTime > l.RegTime then 1 else 0 end 
+FROM EIP_DT_Message d 
+LEFT JOIN EIP_DT_Person p ON p.Person_DT_Id=d.DT_Id AND p.Person_Type=0 
+LEFT JOIN EIP_DT_Log l ON l.DT_ID=d.DT_Id AND l.ActorSyncID='{0}' AND IsNew=1 
+WHERE d.DT_ID IN (
+		SELECT DISTINCT(Person_DT_Id) FROM EIP_DT_Person WHERE (Person_SyncId='{0}') 
+		union
+		SELECT DISTINCT(Person_DT_Id) FROM EIP_DT_Person WHERE (Person_LoginName IN ({1}))
+	)
+```
+
+
+**SQL复制表的几种方法：**
+
+SQL复制整张表
+``` sql
+select * into NewTableName from OldTableName
+```
+只复制列名而不要内容
+``` sql
+select * into NewTableName from OldTableName where 1=0
+```
+表间数据复制
+``` sql
+insert into Table1(zt) select titile from Table2
+```

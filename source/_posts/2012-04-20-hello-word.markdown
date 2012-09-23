@@ -3,9 +3,26 @@ layout: post
 title: "hello world"
 date: 2012-04-20 15:34
 comments: true
-categories: 
+categories: 未分类{uncategorie}
 ---
-hello world
+hello `world`
+
+
+{% img  https://lh6.googleusercontent.com/-7I7sMTRxgoQ/TJiWO5w-gUI/AAAAAAAAB4g/EUtOxE0LWJY/w1366/DarkRaspberryAnge4.jpg "test"%}
+
+<div class="video-container">
+<embed height="452" width="544" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" flashvars="aid=360061&page=9" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+</div>
+
+<!--more-->
+
+![Alt text1](https://lh6.googleusercontent.com/-7I7sMTRxgoQ/TJiWO5w-gUI/AAAAAAAAB4g/EUtOxE0LWJY/w1366/DarkRaspberryAnge4.jpg "Optional title")
+![Alt tex2t](https://lh6.googleusercontent.com/-7I7sMTRxgoQ/TJiWO5w-gUI/AAAAAAAAB4g/EUtOxE0LWJY/w1366/DarkRaspberryAnge4.jpg "Optional title")
+![Alt te3xt](https://lh6.googleusercontent.com/-7I7sMTRxgoQ/TJiWO5w-gUI/AAAAAAAAB4g/EUtOxE0LWJY/w1366/DarkRaspberryAnge4.jpg "Optional title")
+![Alt tex4t](https://lh6.googleusercontent.com/-7I7sMTRxgoQ/TJiWO5w-gUI/AAAAAAAAB4g/EUtOxE0LWJY/w1366/DarkRaspberryAnge4.jpg "Optional title")
+img [fancybox] tst.jpg "test"
+
+{% include_code knowledge.css %}
 
 [google](https://google.com "google")
 
