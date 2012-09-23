@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 笔记 | My Octopress Blog]]></title>
+  <link href="http://lhyqy5.github.com/blog/categories/note/atom.xml" rel="self"/>
+  <link href="http://lhyqy5.github.com/"/>
+  <updated>2012-09-23T09:28:56+08:00</updated>
+  <id>http://lhyqy5.github.com/</id>
+  <author>
+    <name><![CDATA[lhyqy5]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[批处理学习笔记]]></title>
+    <link href="http://lhyqy5.github.com/blog/2012/07/03/bat-study/"/>
+    <updated>2012-07-03T13:00:00+08:00</updated>
+    <id>http://lhyqy5.github.com/blog/2012/07/03/bat-study</id>
+    <content type="html"><![CDATA[<h2>常用路径变量   <a href="http://topic.csdn.net/u/20090828/06/e8dad992-1eb4-467f-81f4-8c74d77743b4.html">[原文]</a></h2>
+
+<p><code>bat
+@echo off
+echo 当前盘符：%~d0
+echo 当前盘符和路径：%~dp0
+echo 当前批处理全路径：%~f0
+echo 当前盘符和路径的短文件名格式：%~sdp0
+echo 当前CMD默认目录：%cd%
+pause
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SQL学习笔记]]></title>
+    <link href="http://lhyqy5.github.com/blog/2012/05/31/sql-study-note/"/>
+    <updated>2012-05-31T10:50:00+08:00</updated>
+    <id>http://lhyqy5.github.com/blog/2012/05/31/sql-study-note</id>
+    <content type="html"><![CDATA[<h2>怎样能把执行结果后的存储过程作为表</h2>
+
+<p>存储过程返回的行集结构可预知那么先建临时表再 insert 临时表 exec 存储过程。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">create</span>   <span class="k">table</span>   <span class="o">#</span><span class="k">table</span><span class="p">(</span><span class="n">columns</span>   <span class="n">types</span>   <span class="p">.....)</span><span class="c1">--声明一个临时表 &lt;br/&gt;</span>
+</span><span class='line'><span class="k">insert</span>   <span class="k">into</span>   <span class="o">#</span><span class="k">table</span>   <span class="k">exec</span>   <span class="n">dbo</span><span class="p">.</span><span class="n">yourStoredProcedure</span><span class="c1">--用你的存储过程向临时表添加记录 &lt;br/&gt;</span>
+</span><span class='line'><span class="k">select</span>   <span class="o">#</span><span class="k">table</span>   <span class="c1">--使用你的临时表&lt;br/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>如果不可预知返回的结构，那么用openrowset之类语句。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">--1调用存储过程</span>
+</span><span class='line'><span class="k">exec</span> <span class="err">存储过程名</span> <span class="err">参数</span>
+</span><span class='line'><span class="c1">--2当表使用</span>
+</span><span class='line'><span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="p">,</span><span class="n">b</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="k">from</span> <span class="n">tb</span> <span class="n">b</span> <span class="k">inner</span> <span class="k">join</span> <span class="p">(</span>
+</span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">openrowset</span><span class="p">(</span><span class="s1">&#39;sqloledb&#39;</span><span class="p">,</span><span class="s1">&#39;ip/server&#39;</span><span class="p">;</span><span class="s1">&#39;sa&#39;</span><span class="p">;</span><span class="s1">&#39;pwd&#39;</span><span class="p">,</span><span class="s1">&#39;exec 库.dbo.存储过程&#39;</span><span class="p">))</span><span class="n">a</span>
+</span><span class='line'><span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="err">条件</span><span class="o">=</span><span class="n">b</span><span class="p">.</span><span class="err">条件</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>SQL Server：表变量的声明和赋值</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">DECLARE</span> <span class="o">@</span><span class="n">tempTable</span> <span class="k">TABLE</span> <span class="p">(</span><span class="n">strVal</span> <span class="nb">int</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">@</span><span class="n">tempTable</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">EXAMPLE_TABLE</span><span class="p">;</span> <span class="c1">--与@tempTable表结构一致&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">@</span><span class="n">tempTable</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<!--more-->
+
+
+<h2>公用表表达式(CTE)</h2>
+
+<p><strong>公用表表达式(CTE)的定义</strong>
+公用表达式的定义非常简单，只包含三部分：</p>
+
+<ul>
+<li>公用表表达式的名字（在WITH之后）</li>
+<li>所涉及的列名（可选）</li>
+<li>一个SELECT语句(紧跟AS之后)</li>
+</ul>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>在MSDN中的原型  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'>  <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="k">WITH</span> <span class="n">expression_name</span> <span class="p">[</span> <span class="p">(</span> <span class="k">column_name</span> <span class="p">[,...</span><span class="n">n</span><span class="p">]</span> <span class="p">)</span> <span class="p">]</span>
+</span><span class='line'><span class="k">AS</span>
+</span><span class='line'><span class="p">(</span> <span class="n">CTE_query_definition</span> <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>按照是否递归，可以将公用表（CTE）表达式分为递归公用表表达式和非递归公用表表达式.</p>
+
+<ul>
+<li>非递归公用表表达式（CTE）是查询结果仅仅一次性返回一个结果集用于外部查询调用。并不在其定义的语句中调用其自身的CTE <br/>
+非递归公用表表达式（CTE）的使用方式和视图以及子查询一致</li>
+<li>递归公用表表达式很像派生表（Derived Tables ），指的是在CTE内的语句中调用其自身的CTE.与派生表不同的是，CTE可以在一次定义多次进行派生递归.对于递归的概念，是指一个函数或是过程直接或者间接的调用其自身</li>
+</ul>
+
+
+<h2>#temp 局部变量表，##全局变量表，@temp临时表  <a href="http://topic.csdn.net/u/20071009/07/eeace098-482a-488a-a248-4501889235ac.html">[原文]</a></h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">declare</span> <span class="o">@</span><span class="n">temp</span> <span class="k">table</span><span class="p">(</span><span class="n">id</span> <span class="nb">int</span> <span class="k">identity</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">Name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</span><span class='line'><span class="k">insert</span> <span class="o">@</span><span class="n">temp</span> <span class="k">select</span> <span class="s1">&#39;aa&#39;</span>
+</span><span class='line'><span class="k">insert</span> <span class="o">@</span><span class="n">temp</span> <span class="k">select</span> <span class="s1">&#39;bb&#39;</span>
+</span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="o">@</span><span class="n">temp</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><strong>Transact-SQL 参考</strong><br/>
+<em>table</em></p>
+
+<p>一种特殊的数据类型，用于存储结果集以供后续处理。该数据类型主要用于临时存储一组行，这些行将作为表值函数的结果集返回
+。
+<strong>语法</strong></p>
+
+<p>说明 使用 DECLARE @local_variable 声明 <code>table</code>类型的变量。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">table_type_definition</span> <span class="p">::</span><span class="o">=</span>
+</span><span class='line'>  <span class="k">TABLE</span> <span class="p">(</span> <span class="err">{</span> <span class="n">column_definition</span> <span class="o">|</span> <span class="n">table_constraint</span> <span class="err">}</span> <span class="p">[</span> <span class="p">,...</span><span class="n">n</span> <span class="p">]</span> <span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">column_definition</span> <span class="p">::</span><span class="o">=</span>
+</span><span class='line'>  <span class="k">column_name</span> <span class="n">scalar_data_type</span>
+</span><span class='line'>  <span class="p">[</span> <span class="k">COLLATE</span> <span class="n">collation_definition</span> <span class="p">]</span>
+</span><span class='line'>  <span class="p">[</span> <span class="p">[</span> <span class="k">DEFAULT</span> <span class="n">constant_expression</span> <span class="p">]</span> <span class="o">|</span> <span class="k">IDENTITY</span> <span class="p">[</span> <span class="p">(</span> <span class="n">seed</span> <span class="p">,</span> <span class="k">increment</span> <span class="p">)</span> <span class="p">]</span> <span class="p">]</span>
+</span><span class='line'>  <span class="p">[</span> <span class="n">ROWGUIDCOL</span> <span class="p">]</span>
+</span><span class='line'>  <span class="p">[</span> <span class="n">column_constraint</span> <span class="p">]</span> <span class="p">[</span> <span class="p">...</span><span class="n">n</span> <span class="p">]</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">column_constraint</span> <span class="p">::</span><span class="o">=</span>
+</span><span class='line'>  <span class="err">{</span> <span class="p">[</span> <span class="k">NULL</span> <span class="o">|</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="p">]</span>
+</span><span class='line'>  <span class="o">|</span> <span class="p">[</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="o">|</span> <span class="k">UNIQUE</span> <span class="p">]</span>
+</span><span class='line'>  <span class="o">|</span> <span class="k">CHECK</span> <span class="p">(</span> <span class="n">logical_expression</span> <span class="p">)</span>
+</span><span class='line'>  <span class="err">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">table_constraint</span> <span class="p">::</span><span class="o">=&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'>  <span class="err">{</span> <span class="err">{</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="o">|</span> <span class="k">UNIQUE</span> <span class="err">}</span> <span class="p">(</span> <span class="k">column_name</span> <span class="p">[</span> <span class="p">,...</span><span class="n">n</span> <span class="p">]</span> <span class="p">)</span>
+</span><span class='line'>  <span class="o">|</span> <span class="k">CHECK</span> <span class="p">(</span> <span class="n">search_condition</span> <span class="p">)</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'>  <span class="err">}</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><strong>参数</strong></p>
+
+<p><em>table_type_definition</em></p>
+
+<p>与<code>CREATE TABLE</code> 中定义表所用的信息子集相同的信息子集。表声明包括列定义、名称、数据类型和约束。允许的约束类型仅为 <code>PRIMARY KEY</code>、<code>UNIQUE KEY</code> 和 <code>NULL</code>。
+有关语法的更多信息，请参见 <code>CREATE TABLE</code>、<code>CREATE FUNCTION</code> 和 <code>DECLARE @local_variable</code>。</p>
+
+<p><em>collation_definition</em></p>
+
+<p>是由 Microsoft® Windows™ 区域设置和比较风格、Windows 区域设置和二进制表示法或 Microsoft SQL Server™ 排序规则组成的列的排序规则。</p>
+
+<p><strong>注释</strong></p>
+
+<p>可将函数和变量声明为 <code>table</code> 类型。<code>table</code> 变量可用于函数、存储过程和批处理中。</p>
+
+<p>尽可能使用表变量而不使用临时表。<code>table</code> 变量有以下优点：</p>
+
+<ul>
+<li>table 变量的行为类似于局部变量，有明确定义的作用域。该作用域为声明该变量的函数、存储过程或批处理。</li>
+<li>在其作用域内，<code>table</code> 变量可像常规表那样使用。该变量可应用于 <code>SELECT</code>、<code>INSERT</code>、<code>UPDATE</code> 和 <code>DELETE</code> 语句中用到表或表的表达式的地方。但是，<code>table</code> 不能用在下列语句中：
+<code>sql
+INSERT INTO table_variable EXEC [存储过程]。
+SELECT select_list INTO table_variable [语句]。
+</code></li>
+<li>在定义 table 变量的函数、存储过程或批处理结束时，自动清除 table 变量。</li>
+<li>在存储过程中使用表变量与使用临时表相比，减少了存储过程的重新编译量。</li>
+<li>涉及表变量的事务只在表变量更新期间存在。这样就减少了表变量对锁定和记录资源的需求。</li>
+<li>不支持在表变量之间进行赋值操作。另外，由于表变量作用域有限，并且不是持久数据库的一部分，因而不受事务回滚的影响。</li>
+</ul>
+
+
+<h2>SomeTip</h2>
+
+<p><strong>计算字段</strong></p>
+
+<p>``` sql
+SELECT *,AlterFlag = case when l.RegTime is null or d.DT_LastModifTime > l.RegTime then 1 else 0 end
+FROM EIP_DT_Message d
+LEFT JOIN EIP_DT_Person p ON p.Person_DT_Id=d.DT_Id AND p.Person_Type=0
+LEFT JOIN EIP_DT_Log l ON l.DT_ID=d.DT_Id AND l.ActorSyncID='{0}' AND IsNew=1
+WHERE d.DT_ID IN (</p>
+
+<pre><code>    SELECT DISTINCT(Person_DT_Id) FROM EIP_DT_Person WHERE (Person_SyncId='{0}') 
+    union
+    SELECT DISTINCT(Person_DT_Id) FROM EIP_DT_Person WHERE (Person_LoginName IN ({1}))
+)
+</code></pre>
+
+<p>```</p>
+
+<p><strong>SQL复制表的几种方法：</strong></p>
+
+<p>SQL复制整张表
+<code>sql
+select * into NewTableName from OldTableName
+</code>
+只复制列名而不要内容
+<code>sql
+select * into NewTableName from OldTableName where 1=0
+</code>
+表间数据复制
+<code>sql
+insert into Table1(zt) select titile from Table2
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

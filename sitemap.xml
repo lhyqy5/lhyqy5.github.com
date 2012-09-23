@@ -2,14 +2,26 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://lhyqy5.github.com/blog/2012/04/20/hello-word/</loc>
-        <lastmod>2012-04-25T18:08:39+08:00</lastmod>
+        <lastmod>2012-09-23T09:28:39+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lhyqy5.github.com/blog/2012/05/31/sql-study-note/</loc>
+        <lastmod>2012-09-23T08:55:00+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lhyqy5.github.com/blog/2012/06/12/commont-note/</loc>
+        <lastmod>2012-09-23T08:52:28+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lhyqy5.github.com/blog/2012/07/03/bat-study/</loc>
+        <lastmod>2012-09-23T08:43:28+08:00</lastmod>
     </url>
     <url>
         <loc>http://lhyqy5.github.com/blog/archives/</loc>
-        <lastmod>2012-04-25T18:08:39+08:00</lastmod>
+        <lastmod>2012-09-23T09:28:39+08:00</lastmod>
     </url>
     <url>
         <loc>http://lhyqy5.github.com/</loc>
-        <lastmod>2012-04-25T18:08:39+08:00</lastmod>
+        <lastmod>2012-09-23T09:28:39+08:00</lastmod>
     </url>
 </urlset>

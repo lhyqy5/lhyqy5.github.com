@@ -1,0 +1,244 @@
+﻿html, body, ul, dl
+{
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    list-style: none;
+    font-family: 微软雅黑 宋体 MS Sans Serif;
+}
+table
+{
+    border-collapse: collapse;
+}
+body
+{
+    overflow: auto !important;
+}
+#Container
+{
+}
+.wrap
+{
+    width: 1005px;
+    margin: 0 auto;
+}
+
+a
+{
+    text-decoration: none;
+    color: #2b2b2b;
+}
+
+
+/*顶部 Begin*/
+#Top
+{
+    text-align: center;
+    overflow: hidden;
+}
+#Content
+{
+    background-image: url(../Images/Stmp/Index_Mid_3.jpg);
+    background-repeat: no-repeat;
+    width: 988px;
+    height: 293px;
+}
+
+/*For Debug*/
+#tabs
+{
+   /* background: rgba(255, 255, 255, 0) !important;*/
+}
+
+/*For Debug END*/
+
+
+
+#knowledge
+{
+    width: 388px;
+    height: 293px;
+    float: left;
+}
+
+
+
+/*标签*/
+.tabpage
+{
+    height: 293px;
+}
+
+
+.tabpage > ul
+{
+    height: 90%;
+    padding: 10px 20px 0 20px;
+    
+    overflow:hidden;
+}
+.tabpage > ul > li
+{
+    padding:5pt 0;
+    height: 12pt;
+    font-size:14pt;
+}
+.tabpage > ul > li:hover
+{
+    background: #F0F0F0;
+}
+.tabpage-item
+{
+}
+.tabpage-item > li
+{
+    display: inline;
+}
+.tabpage-item > li > a
+{
+    display: inline-block;
+    width: 220px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #2b2b2b;
+}
+.tabpage-item-title
+{
+    padding-right: 40px;
+}
+.tabpage-item-author
+{
+    width: 50px;
+    padding-right: 10px;
+    color: #b9babc;
+}
+.tabpage-item-date
+{
+    width: 45px;
+    color: #b9babc;
+}
+
+
+/*最新*/
+.last-title
+{
+    background-image: url(../Images/knowledge-title-arrow.gif);
+    background-repeat: no-repeat;
+    background-position: 0 65%;
+    font-size: 12pt;
+    text-indent: 10px;
+    padding: 10px 0 0 0;
+}
+.last-title a
+{
+    color: #1d569c;
+}
+.last-content
+{
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    line-height: 15pt;
+    font-size: 9pt;
+    height: 40px;
+    margin: 5px 0 0 10px;
+    overflow: hidden;
+}
+
+.last > ul
+{
+    /* margin: 0 5px 0 10px;*/
+    height: 100%;
+}
+.last > ul > li
+{
+    margin: 0 13px 0 10px;
+    height: 85px;
+    border-bottom: 1px dashed #d2d2d2;
+}
+.last > ul > li:hover
+{
+    background: #F0F0F0;
+}
+
+
+
+/*推荐*/
+
+#recomment
+{
+    width: 230px;
+    height: 100%;
+    background-color: #f0f0f0;
+    float: left;
+}
+
+#recomment-title
+{
+    height: 27px;
+    background-image: url(../Images/knowledge-recom-heard.gif);
+    background-repeat: repeat-x;
+}
+
+#recomment-title span
+{
+    position: relative;
+    background-image: url(../Images/knowledge-recom-arrow.gif);
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    left: 30px;
+    top: 5px;
+}
+#recomment-title span a
+{
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+#recomment-content
+{
+    background: white;
+    width: 210px;
+    height: 255px;
+    left: 7px;
+    position: relative;
+    overflow: hidden;
+    border: 1px #DDDDDD solid;
+}
+#recomment-content ul
+{
+    padding: 0 6px;
+}
+
+#recomment-content ul li
+{
+    border-bottom: 1px gray dotted;
+    height: 85px;
+}
+
+.recom-item
+{
+    padding-top: 20px;
+}
+
+.recom-item-img
+{
+    width: 42px;
+    height: 45px;
+    display: block;
+    float: left;
+}
+.recom-item-txt
+{
+    float: left;
+    width: 140px;
+    margin-left: 10px;
+}
+
+.recom-item-title
+{
+    font-weight: bold;
+}
+.recom-item-content
+{
+}
