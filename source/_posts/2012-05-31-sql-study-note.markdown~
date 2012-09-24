@@ -3,7 +3,9 @@ layout: post
 title: "SQL学习笔记"
 date: 2012-05-31 10:50
 comments: true
-categories: 笔记{not}
+categories: 
+ - 笔记{note}
+ - SQL{sql}
 ---
 
 ##怎样能把执行结果后的存储过程作为表 

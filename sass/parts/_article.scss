@@ -91,6 +91,8 @@ article{
 					float: left;
 					left: -15px;
 				}
+			}
+			&>p:last-of-type{
 				&:after{
 					content:close-quote;
 					font-size:3em;
@@ -107,19 +109,37 @@ article{
 		table{
 			//background: $color-gray04;
 			background:none;
-			border: 1px solid $color-gray03;
+			//border: 1px solid $color-gray03;
+			border-bottom: 1px solid $color-black02;
+			border-right: 1px solid $color-black02;
 			border-spacing: 0;
 			margin-top: 10px;
 			th{
-				background: $color-gray03;
+				background: $color-black02;
 				padding: 0 15px;
+				box-shadow:$out-box-shadow;
 			}
 			td{
 				text-align: center;
 			}
 			tr{
 				&:nth-of-type(2n){
-					background: #d5d5d5;
+					background: $color-black04;
+				}
+			}
+		}
+		&>table{
+			th{
+
+			}
+			td{
+				border-left:1px solid $color-split2;
+				border-right:1px solid $color-split1;
+			}
+			tr{
+
+				&:nth-of-type(2n){
+
 				}
 			}
 		}
