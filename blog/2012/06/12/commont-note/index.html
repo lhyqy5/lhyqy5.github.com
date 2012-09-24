@@ -3,15 +3,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>commont note - My Octopress Blog</title>
+	<title>位运算相关 - My Octopress Blog</title>
 	<meta name="author" content="lhyqy5">
 
 	
-	<meta name="description" content="位运算应用口诀
-清零取反要用与，某位置一可用或
-若要取反和交换，轻轻松松用异或
-移位运算
-要点 1 它们都是双目运算符，两个运算分量都是整形，结果也是整形。 2 " &lt; &lt;" 左移：右边空出的位上补0，左边的位将从字头挤掉，其值相当于乘2。 3 "&gt;&gt;"右移：右边的位被挤掉 &hellip;">
+	<meta name="description" content="位运算应用口诀 清零取反要用与，某位置一可用或 若要取反和交换，轻轻松松用异或 移位运算 要点 它们都是双目运算符，两个运算分量都是整形，结果也是整形。
+&#8221; &lt; &lt;&#8221; 左移：右边空出的位上补0，左边的位将从字头挤掉，其值相当于乘2。
+&#8221;>>&# &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -78,164 +76,357 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h1 class="title">Commont Note</h1>
-	<div class="entry-content"><p>位运算应用口诀
-清零取反要用与，某位置一可用或
-若要取反和交换，轻轻松松用异或
-移位运算
-要点 1 它们都是双目运算符，两个运算分量都是整形，结果也是整形。</p>
+	<h1 class="title">位运算相关</h1>
+	<div class="entry-content"><h3>位运算应用口诀</h3>
 
-<pre><code>2 " &lt; &lt;" 左移：右边空出的位上补0，左边的位将从字头挤掉，其值相当于乘2。 
-3 "&gt;&gt;"右移：右边的位被挤掉。对于左边移出的空位，如果是正数则空位补0，若为负数，可能补0或补1，这取决于所用的计算机系统。 
-4 "&gt;&gt;&gt;"运算符，右边的位被挤掉，对于左边移出的空位一概补上0。 
-</code></pre>
+<blockquote><p>清零取反要用与，某位置一可用或</p>
 
-<p>位运算符的应用 (源操作数s 掩码mask)
-(1) 按位与&#8211; &amp;
-1 清零特定位 (mask中特定位置0，其它位为1，s=s&amp;mask)
-2 取某数中指定位 (mask中特定位置1，其它位为0，s=s&amp;mask)
-(2) 按位或&#8211; |</p>
+<p>若要取反和交换，轻轻松松用异或</p></blockquote>
 
-<pre><code>常用来将源操作数某些位置1，其它位不变。 (mask中特定位置1，其它位为0 s=s |mask) 
-</code></pre>
+<h3>移位运算</h3>
 
-<p>(3) 位异或&#8211; ^
-1 使特定位的值取反 (mask中特定位置1，其它位为0 s=s<sup>mask)</sup>
-2 不引入第三变量，交换两个变量的值 (设 a=a1,b=b1)</p>
+<h4>要点</h4>
 
-<pre><code>目 标          操 作              操作后状态 
-</code></pre>
+<ol>
+<li>它们都是双目运算符，两个运算分量都是整形，结果也是整形。</li>
+<li>&#8221; &lt; &lt;&#8221; 左移：右边空出的位上补0，左边的位将从字头挤掉，其值相当于乘2。</li>
+<li>&#8221;>>&#8221;右移：右边的位被挤掉。对于左边移出的空位，如果是正数则空位补0，若为负数，可能补0或补1，这取决于所用的计算机系统。</li>
+<li>&#8221;>>>&#8221;运算符，右边的位被挤掉，对于左边移出的空位一概补上0。</li>
+</ol>
 
-<p>a=a1<sup>b1</sup>        a=a<sup>b</sup>              a=a1<sup>b1,b=b1</sup>
-b=a1<sup>b1<sup>b1</sup></sup>      b=a<sup>b</sup>              a=a1<sup>b1,b=a1</sup>
-a=b1<sup>a1<sup>a1</sup></sup>      a=a<sup>b</sup>              a=b1,b=a1
-二进制补码运算公式：
--x = ~x + 1 = ~(x-1)
-~x = -x-1
--(~x) = x+1
-~(-x) = x-1
-x+y = x - ~y - 1 = (x |y)+(x&amp;y)
-x-y = x + ~y + 1 = (x |~y)-(~x&amp;y)
-x<sup>y</sup> = (x |y)-(x&amp;y)
-x |y = (x&amp;~y)+y
-x&amp;y = (~x |y)-~x
-x==y:    ~(x-y |y-x)
-x!=y:    x-y |y-x
-x &lt; y:    (x-y)<sup>((x<sup>y)&amp;((x-y)<sup>x))</sup></sup></sup>
-x &lt;=y:    (x |~y)&amp;((x<sup>y)</sup> |~(y-x))
-x &lt; y:    (~x&amp;y) |((~x |y)&amp;(x-y))//无符号x,y比较
-x &lt;=y:    (~x |y)&amp;((x<sup>y)</sup> |~(y-x))//无符号x,y比较
-应用举例
-(1) 判断int型变量a是奇数还是偶数          <br/>
-a&amp;1  = 0 偶数</p>
 
-<pre><code>  a&amp;1 =  1 奇数 
-</code></pre>
+<h3>位运算符的应用 (源操作数s 掩码mask)</h3>
 
-<p>(2) 取int型变量a的第k位 (k=0,1,2……sizeof(int))，即a>>k&amp;1
-(3) 将int型变量a的第k位清0，即a=a&amp;~(1 &lt; &lt;k)
-(4) 将int型变量a的第k位置1， 即a=a |(1 &lt; &lt;k)
-(5) int型变量循环左移k次，即a=a &lt; <k |a>>16-k  (设sizeof(int)=16)
-(6) int型变量a循环右移k次，即a=a>>k |a &lt; &lt;16-k  (设sizeof(int)=16)
-(7)整数的平均值
-对于两个整数x,y，如果用 (x+y)/2 求平均值，会产生溢出，因为 x+y 可能会大于INT_MAX，但是我们知道它们的平均值是肯定不会溢出的，我们用如下算法：
-int average(int x, int y)  //返回X,Y 的平均值
-{</p>
+<h4>按位与&#8211; <code>&amp;</code></h4>
 
-<pre><code>return (x&amp;y)+((x^y)&gt;&gt;1); 
-</code></pre>
+<ol>
+<li>清零特定位 (mask中特定位置0，其它位为1，<code>s=s&amp;mask</code>)</li>
+<li>取某数中指定位 (mask中特定位置1，其它位为0，<code>s=s&amp;mask</code>)</li>
+</ol>
 
-<p>}
-(8)判断一个整数是不是2的幂,对于一个数 x >= 0，判断他是不是2的幂
-boolean power2(int x)
-{</p>
 
-<pre><code>return ((x&amp;(x-1))==0)&amp;&amp;(x!=0)； 
-</code></pre>
+<h4>按位或&#8211; <code>|</code></h4>
 
-<p>}
-(9)不用temp交换两个整数
-void swap(int x , int y)
-{</p>
+<p>常用来将源操作数某些位置1，其它位不变。 (mask中特定位置1，其它位为0 <code>s=s |mask</code>)</p>
 
-<pre><code>x ^= y; 
-y ^= x; 
-x ^= y; 
-</code></pre>
+<h4>位异或&#8211; <code>^</code></h4>
 
-<p>}
-(10)计算绝对值
-int abs( int x )
-{
-int y ;
-y = x >> 31 ;
-return (x<sup>y)-y</sup> ;        //or: (x+y)<sup>y</sup>
-}
-(11)取模运算转化成位运算 (在不产生溢出的情况下)</p>
+<ol>
+<li>使特定位的值取反 (mask中特定位置1，其它位为0 <code>s=s^mask</code>)</li>
+<li>不引入第三变量，交换两个变量的值 (设 <code>a=a1,b=b1</code>)</li>
+</ol>
 
-<pre><code>    a % (2^n) 等价于 a &amp; (2^n - 1) 
-</code></pre>
 
-<p>(12)乘法运算转化成位运算 (在不产生溢出的情况下)</p>
+<table>
+<thead>
+<tr>
+<th align="center">目 标 </th>
+<th align="center"> 操 作 </th>
+<th align="center"> 操作后状态 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>a=a1^b1</code> </td>
+<td align="center"><code>a=a^b</code> </td>
+<td align="center"> <code>a=a1^b1,b=b1</code> </td>
+</tr>
+<tr>
+<td align="center"><code>b=a1^b1^b1</code> </td>
+<td align="center"> <code>b=a^b</code> </td>
+<td align="center"> <code>a=a1^b1,b=a1</code> </td>
+</tr>
+<tr>
+<td align="center"><code>a=b1^a1^a1</code> </td>
+<td align="center"> <code>a=a^b</code> </td>
+<td align="center"> <code>a=b1,b=a1</code> </td>
+</tr>
+</tbody>
+</table>
 
-<pre><code>    a * (2^n) 等价于 a &lt; &lt; n 
-</code></pre>
 
-<p>(13)除法运算转化成位运算 (在不产生溢出的情况下)</p>
+<!-- more -->
 
-<pre><code>    a / (2^n) 等价于 a&gt;&gt; n 
-    例: 12/8 == 12&gt;&gt;3 
-</code></pre>
 
-<p>(14) a % 2 等价于 a &amp; 1      <br/>
-(15) if (x == a) x= b;
-　　          else x= a;
-　　      等价于 x= a ^ b ^ x;
-(16) x 的 相反数 表示为 (~x+1)</p>
+<h3>二进制补码运算公式：</h3>
 
-<p>实例</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="o">-</span><span class="n">x</span> <span class="o">=</span> <span class="o">~</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="o">~</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="o">-</span><span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+</span><span class='line'><span class="o">~</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="o">~</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">|</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+</span><span class='line'><span class="n">x</span><span class="o">-</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="o">~</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">|~</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+</span><span class='line'><span class="n">x</span><span class="o">^</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">|</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+</span><span class='line'><span class="n">x</span> <span class="o">|</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">&amp;~</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="n">y</span>
+</span><span class='line'><span class="n">x</span><span class="o">&amp;</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span> <span class="o">|</span><span class="n">y</span><span class="p">)</span><span class="o">-~</span><span class="n">x</span>
+</span><span class='line'><span class="n">x</span><span class="o">==</span><span class="nl">y:</span>    <span class="o">~</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span> <span class="o">|</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'><span class="n">x</span><span class="o">!=</span><span class="nl">y:</span>    <span class="n">x</span><span class="o">-</span><span class="n">y</span> <span class="o">|</span><span class="n">y</span><span class="o">-</span><span class="n">x</span>
+</span><span class='line'><span class="n">x</span> <span class="o">&lt;</span> <span class="nl">y:</span>    <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">^</span><span class="p">((</span><span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">)</span><span class="o">&amp;</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">^</span><span class="n">x</span><span class="p">))</span>
+</span><span class='line'><span class="n">x</span> <span class="o">&lt;=</span><span class="nl">y:</span>    <span class="p">(</span><span class="n">x</span> <span class="o">|~</span><span class="n">y</span><span class="p">)</span><span class="o">&amp;</span><span class="p">((</span><span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">)</span> <span class="o">|~</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+</span><span class='line'><span class="n">x</span> <span class="o">&lt;</span> <span class="nl">y:</span>    <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span> <span class="o">|</span><span class="p">((</span><span class="o">~</span><span class="n">x</span> <span class="o">|</span><span class="n">y</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">))</span><span class="c1">//无符号x,y比较 </span>
+</span><span class='line'><span class="n">x</span> <span class="o">&lt;=</span><span class="nl">y:</span>    <span class="p">(</span><span class="o">~</span><span class="n">x</span> <span class="o">|</span><span class="n">y</span><span class="p">)</span><span class="o">&amp;</span><span class="p">((</span><span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">)</span> <span class="o">|~</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="c1">//无符号x,y比较 </span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>功能              |          示例            |    位运算 
-</code></pre>
 
-<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;
-去掉最后一位          | (101101->10110)          | x >> 1
-在最后加一个0        | (101101->1011010)        | x &lt; &lt; 1
-在最后加一个1        | (101101->1011011)        | x &lt; &lt; 1+1
-把最后一位变成1      | (101100->101101)          | x | 1
-把最后一位变成0      | (101101->101100)          | x | 1-1
-最后一位取反          | (101101->101100)          | x ^ 1
-把右数第k位变成1      | (101001->101101,k=3)      | x | (1 &lt; &lt; (k-1))
-把右数第k位变成0      | (101101->101001,k=3)      | x &amp; ~ (1 &lt; &lt; (k-1))
-右数第k位取反        | (101001->101101,k=3)      | x ^ (1 &lt; &lt; (k-1))
-取末三位              | (1101101->101)            | x &amp; 7
-取末k位              | (1101101->1101,k=5)      | x &amp; ((1 &lt; &lt; k)-1)</p>
+<h3>应用举例</h3>
 
-<p>取右数第k位          | (1101101->1,k=4)          | x >> (k-1) &amp; 1</p>
+<ul>
+<li>判断int型变量a是奇数还是偶数
+  <em>a&amp;1  = 0 偶数</em>
+  <em>a&amp;1 =  1 奇数</em></li>
+<li>取int型变量a的第k位 (k=0,1,2……sizeof(int))，即a>>k&amp;1</li>
+<li>将int型变量a的第k位清0，即a=a&amp;~(1 &lt; &lt;k)</li>
+<li>将int型变量a的第k位置1， 即a=a |(1 &lt; &lt;k)</li>
+<li>int型变量循环左移k次，即a=a &lt; <k |a>>16-k  (设sizeof(int)=16)</li>
+<li>int型变量a循环右移k次，即a=a>>k |a &lt; &lt;16-k  (设sizeof(int)=16)</li>
+<li>整数的平均值</li>
+<li>对于两个整数x,y，如果用 (x+y)/2 求平均值，会产生溢出，因为 x+y 可能会大于INT_MAX，但是我们知道它们的平均值是肯定不会溢出的，我们用如下算法：</li>
+</ul>
 
-<p>把末k位变成1          | (101001->101111,k=4)      | x | (1 &lt; &lt; k-1)
-末k位取反            | (101001->100110,k=4)      | x ^ (1 &lt; &lt; k-1)
-把右边连续的1变成0    | (100101111->100100000)    | x &amp; (x+1)
-把右起第一个0变成1    | (100101111->100111111)    | x | (x+1)
-把右边连续的0变成1    | (11011000->11011111)      | x | (x-1)
-取右边连续的1        | (100101111->1111)        | (x ^ (x+1)) >> 1
-去掉右起第一个1的左边 | (100101000->1000)        | x &amp; (x ^ (x-1))
-判断奇数      (x&amp;1)==1
-判断偶数 (x&amp;1)==0</p>
 
-<p>例如求从x位（高）到y位（低）间共有多少个1</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="kt">int</span> <span class="n">average</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>  <span class="c1">//返回X,Y 的平均值 </span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="p">((</span><span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>public static int FindChessNum(int x, int y, ushort k)</p>
 
-<pre><code>    { 
-        int re = 0; 
-        for (int i = y; i &lt;= x; i++) 
-        { 
-            re += ((k &gt;&gt; (i - 1)) &amp; 1); 
-        } 
-        return re; 
-    } 
-</code></pre>
+<ul>
+<li>判断一个整数是不是2的幂,对于一个数 x >= 0，判断他是不是2的幂</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="n">boolean</span> <span class="n">power2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">((</span><span class="n">x</span><span class="o">&amp;</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span class="err">；</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>不用temp交换两个整数</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="kt">void</span> <span class="n">swcap</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">x</span> <span class="o">^=</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">y</span> <span class="o">^=</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">x</span> <span class="o">^=</span> <span class="n">y</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>计算绝对值</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="kt">int</span> <span class="n">abs</span><span class="p">(</span> <span class="kt">int</span> <span class="n">x</span> <span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">y</span> <span class="p">;</span>
+</span><span class='line'>  <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span> <span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="n">y</span> <span class="p">;</span>        <span class="c1">//or: (x+y)^y </span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>取模运算转化成位运算 (在不产生溢出的情况下)
+
+<pre><code>  a % (2^n) 等价于 a &amp; (2^n - 1)
+</code></pre></li>
+<li>乘法运算转化成位运算 (在不产生溢出的情况下)
+
+<pre><code>  a * (2^n) 等价于 a &lt; &lt; n
+</code></pre></li>
+<li>除法运算转化成位运算 (在不产生溢出的情况下)
+
+<pre><code>  a / (2^n) 等价于 a&gt;&gt; n
+  例: 12/8 == 12&gt;&gt;3 
+</code></pre></li>
+<li><code>a % 2</code> 等价于 <code>a &amp; 1</code></li>
+<li><code>x= a ^ b ^ x;</code> 等价于
+
+<pre><code>  if (x == a) x= b; 
+  else x= a;
+</code></pre></li>
+<li>x 的 相反数 表示为 (~x+1)</li>
+</ul>
+
+
+<h3>实例</h3>
+
+<table>
+<thead>
+<tr>
+<th align="center">功能 </th>
+<th align="center"> 示例  </th>
+<th align="center"> 位运算 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">去掉最后一位      </td>
+<td align="center"> (101101->10110)          </td>
+<td align="center"> x >> 1 </td>
+</tr>
+<tr>
+<td align="center">在最后加一个0        </td>
+<td align="center"> (101101->1011010)        </td>
+<td align="center"> x &lt; &lt; 1 </td>
+</tr>
+<tr>
+<td align="center">在最后加一个1        </td>
+<td align="center"> (101101->1011011)        </td>
+<td align="center"> x &lt; &lt; 1+1 </td>
+</tr>
+<tr>
+<td align="center">把最后一位变成1      </td>
+<td align="center"> (101100->101101)          </td>
+<td align="center"> x | 1 </td>
+</tr>
+<tr>
+<td align="center">把最后一位变成0      </td>
+<td align="center"> (101101->101100)          </td>
+<td align="center"> x | 1-1 </td>
+</tr>
+<tr>
+<td align="center">最后一位取反          </td>
+<td align="center"> (101101->101100)          </td>
+<td align="center"> x ^ 1 </td>
+</tr>
+<tr>
+<td align="center">把右数第k位变成1      </td>
+<td align="center"> (101001->101101,k=3)      </td>
+<td align="center"> x | (1 &lt; &lt; (k-1)) </td>
+</tr>
+<tr>
+<td align="center">把右数第k位变成0      </td>
+<td align="center"> (101101->101001,k=3)      </td>
+<td align="center"> x &amp; ~ (1 &lt; &lt; (k-1)) </td>
+</tr>
+<tr>
+<td align="center">右数第k位取反        </td>
+<td align="center"> (101001->101101,k=3)      </td>
+<td align="center"> x ^ (1 &lt; &lt; (k-1)) </td>
+</tr>
+<tr>
+<td align="center">取末三位              </td>
+<td align="center"> (1101101->101)            </td>
+<td align="center"> x &amp; 7 </td>
+</tr>
+<tr>
+<td align="center">取末k位              </td>
+<td align="center"> (1101101->1101,k=5)      </td>
+<td align="center"> x &amp; ((1 &lt; &lt; k)-1) </td>
+</tr>
+<tr>
+<td align="center">取右数第k位          </td>
+<td align="center"> (1101101->1,k=4)          </td>
+<td align="center"> x >> (k-1) &amp; 1 </td>
+</tr>
+<tr>
+<td align="center">把末k位变成1          </td>
+<td align="center"> (101001->101111,k=4)      </td>
+<td align="center"> x | (1 &lt; &lt; k-1) </td>
+</tr>
+<tr>
+<td align="center">末k位取反            </td>
+<td align="center"> (101001->100110,k=4)      </td>
+<td align="center"> x ^ (1 &lt; &lt; k-1) </td>
+</tr>
+<tr>
+<td align="center">把右边连续的1变成0    </td>
+<td align="center"> (100101111->100100000)    </td>
+<td align="center"> x &amp; (x+1) </td>
+</tr>
+<tr>
+<td align="center">把右起第一个0变成1    </td>
+<td align="center"> (100101111->100111111)    </td>
+<td align="center"> x | (x+1) </td>
+</tr>
+<tr>
+<td align="center">把右边连续的0变成1    </td>
+<td align="center"> (11011000->11011111)      </td>
+<td align="center"> x | (x-1) </td>
+</tr>
+<tr>
+<td align="center">取右边连续的1        </td>
+<td align="center"> (100101111->1111)        </td>
+<td align="center"> (x ^ (x+1)) >> 1 </td>
+</tr>
+<tr>
+<td align="center">去掉右起第一个1的左边 </td>
+<td align="center"> (100101000->1000)        </td>
+<td align="center"> x &amp; (x ^ (x-1)) </td>
+</tr>
+</tbody>
+</table>
+
+
+<ul>
+<li>判断奇数 (x&amp;1)==1</li>
+<li><p>判断偶数 (x&amp;1)==0</p></li>
+<li><p>例如求从x位（高）到y位（低）间共有多少个1*</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">FindChessNum</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="n">ushort</span> <span class="n">k</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">re</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="n">re</span> <span class="o">+=</span> <span class="p">((</span><span class="n">k</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">re</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -252,8 +443,12 @@ return (x<sup>y)-y</sup> ;        //or: (x+y)<sup>y</sup>
   
 
 
-<time datetime="2012-06-12T18:30:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time></div>
+<time datetime="2012-06-12T10:50:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2012</time></div>
 	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/note/'>笔记</a>, <a class='category' href='/blog/categories/code/'>编程</a>
+
 
 </div>
 	
@@ -285,6 +480,7 @@ return (x<sup>y)-y</sup> ;        //or: (x+y)<sup>y</sup>
 
     lhyqy5
 
+   Powered by <a href="http://octopress.org">Octopress</a>
 </footer>
 	<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>

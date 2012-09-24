@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SQL | My Octopress Blog]]></title>
   <link href="http://lhyqy5.github.com/blog/categories/sql/atom.xml" rel="self"/>
   <link href="http://lhyqy5.github.com/"/>
-  <updated>2012-09-23T09:28:56+08:00</updated>
+  <updated>2012-09-24T07:44:00+08:00</updated>
   <id>http://lhyqy5.github.com/</id>
   <author>
     <name><![CDATA[lhyqy5]]></name>
@@ -18,10 +18,11 @@
     <link href="http://lhyqy5.github.com/blog/2012/05/31/sql-study-note/"/>
     <updated>2012-05-31T10:50:00+08:00</updated>
     <id>http://lhyqy5.github.com/blog/2012/05/31/sql-study-note</id>
-    <content type="html"><![CDATA[<h2>怎样能把执行结果后的存储过程作为表</h2>
+    <content type="html"><![CDATA[<h3>怎样能把执行结果后的存储过程作为表</h3>
 
-<p>存储过程返回的行集结构可预知那么先建临时表再 insert 临时表 exec 存储过程。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<h4>存储过程返回的行集结构可预知那么先建临时表再 insert 临时表 exec 存储过程。</h4>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">create</span>   <span class="k">table</span>   <span class="o">#</span><span class="k">table</span><span class="p">(</span><span class="n">columns</span>   <span class="n">types</span>   <span class="p">.....)</span><span class="c1">--声明一个临时表 &lt;br/&gt;</span>
@@ -29,8 +30,9 @@
 </span><span class='line'><span class="k">select</span>   <span class="o">#</span><span class="k">table</span>   <span class="c1">--使用你的临时表&lt;br/&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>如果不可预知返回的结构，那么用openrowset之类语句。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<h4>如果不可预知返回的结构，那么用openrowset之类语句。</h4>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -44,7 +46,7 @@
 </span><span class='line'><span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="err">条件</span><span class="o">=</span><span class="n">b</span><span class="p">.</span><span class="err">条件</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h2>SQL Server：表变量的声明和赋值</h2>
+<h3>SQL Server：表变量的声明和赋值</h3>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -63,10 +65,11 @@
 <!--more-->
 
 
-<h2>公用表表达式(CTE)</h2>
+<h3>公用表表达式(CTE)</h3>
 
-<p><strong>公用表表达式(CTE)的定义</strong>
-公用表达式的定义非常简单，只包含三部分：</p>
+<h4>公用表表达式(CTE)的定义</h4>
+
+<p>公用表达式的定义非常简单，只包含三部分：</p>
 
 <ul>
 <li>公用表表达式的名字（在WITH之后）</li>
@@ -95,7 +98,7 @@
 </ul>
 
 
-<h2>#temp 局部变量表，##全局变量表，@temp临时表  <a href="http://topic.csdn.net/u/20071009/07/eeace098-482a-488a-a248-4501889235ac.html">[原文]</a></h2>
+<h3>#temp 局部变量表，##全局变量表，@temp临时表  <a href="http://topic.csdn.net/u/20071009/07/eeace098-482a-488a-a248-4501889235ac.html">[原文]</a></h3>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -107,12 +110,14 @@
 </span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="o">@</span><span class="n">temp</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><strong>Transact-SQL 参考</strong><br/>
-<em>table</em></p>
+<h3>Transact-SQL 参考</h3>
+
+<h4>table</h4>
 
 <p>一种特殊的数据类型，用于存储结果集以供后续处理。该数据类型主要用于临时存储一组行，这些行将作为表值函数的结果集返回
-。
-<strong>语法</strong></p>
+。</p>
+
+<h4>语法</h4>
 
 <p>说明 使用 DECLARE @local_variable 声明 <code>table</code>类型的变量。
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -157,7 +162,7 @@
 </span><span class='line'>  <span class="err">}</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><strong>参数</strong></p>
+<h4>参数</h4>
 
 <p><em>table_type_definition</em></p>
 
@@ -168,7 +173,7 @@
 
 <p>是由 Microsoft® Windows™ 区域设置和比较风格、Windows 区域设置和二进制表示法或 Microsoft SQL Server™ 排序规则组成的列的排序规则。</p>
 
-<p><strong>注释</strong></p>
+<h4>注释</h4>
 
 <p>可将函数和变量声明为 <code>table</code> 类型。<code>table</code> 变量可用于函数、存储过程和批处理中。</p>
 
@@ -188,9 +193,9 @@ SELECT select_list INTO table_variable [语句]。
 </ul>
 
 
-<h2>SomeTip</h2>
+<h3>SomeTip</h3>
 
-<p><strong>计算字段</strong></p>
+<h4>计算字段</h4>
 
 <p>``` sql
 SELECT *,AlterFlag = case when l.RegTime is null or d.DT_LastModifTime > l.RegTime then 1 else 0 end
@@ -207,18 +212,23 @@ WHERE d.DT_ID IN (</p>
 
 <p>```</p>
 
-<p><strong>SQL复制表的几种方法：</strong></p>
+<h3>SQL复制表的几种方法：</h3>
 
-<p>SQL复制整张表
-<code>sql
+<h4>SQL复制整张表</h4>
+
+<p><code>sql
 select * into NewTableName from OldTableName
-</code>
-只复制列名而不要内容
-<code>sql
+</code></p>
+
+<h4>只复制列名而不要内容</h4>
+
+<p><code>sql
 select * into NewTableName from OldTableName where 1=0
-</code>
-表间数据复制
-<code>sql
+</code></p>
+
+<h4>表间数据复制</h4>
+
+<p><code>sql
 insert into Table1(zt) select titile from Table2
 </code></p>
 ]]></content>
