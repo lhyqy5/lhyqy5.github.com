@@ -1,0 +1,31 @@
+---
+layout: post
+title: "Visual Studio 2010 黑色主题"
+date: 2012-09-26 13:00
+comments: true
+categories: 
+ - VS2010{vs2010}
+ - 主题{theme}
+---
+
+####说明
+这是一个仿VS2012的黑色主题的配置方案,由于很多颜色配置不是很仔细,可能有些文字显示不明示
+####界面颜色
+1. 首先下载安装[Visual Studio Color Theme Editor](http://visualstudiogallery.msdn.microsoft.com/20cd93a2-c435-4d00-a797-499f16402378/file/13848/1/ThemeManagerPackage.vsix)插件
+2. 点击 菜单栏->[Theme]->[Customiz Colors..]->[Import Theme]
+3. 选中[这个]()文件就可以
+
+####编辑器颜色
+1. 备份原来的配色方案(点击 菜单栏->[导入和导出设置..]->[导出选定环境设置])
+2. 导入[这个]()配色方案(点击 菜单栏->[导入和导出设置..]->[导入选定环境设置])
+
+####预览
+<div class="gallery gallery2">
+<img src="downloads/images/vs2010-dark-cs.png" alt="cs配色" />
+<img src="downloads/images/vs2010-dark-html.png" alt="html配色" />
+<img src="downloads/images/vs2010-dark-css.png" alt="css配色" />
+<img src="downloads/images/vs2010-dark-js.png" alt="js配色" />
+</div>
+
+另外[这个]()是我所用的等宽字体,YaHei Consolas Hybrid
+

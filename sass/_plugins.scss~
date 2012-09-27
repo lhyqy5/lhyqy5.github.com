@@ -1,2 +1,2 @@
 @import "plugins/fancybox";
-@import "plugins/leftfloat";
+@import "plugins/leftfloat;

@@ -1,0 +1,48 @@
+$space:3px;
+#left-float{
+	position: fixed;
+	left: 0;
+	top: 45%;
+	font: 30px FontAwesome;
+	text-shadow: 1px 0px 9px $color-black02;
+	@media screen and (max-width: 1085px){
+		display:none;
+	}
+} 
+
+#left-float-top{
+	cursor:pointer;
+	@include transition(0.3s);
+	&:before{
+		content:"\f01b";
+	}
+	&:hover{
+		color:$color-gray04;
+	}
+} 
+
+#left-float-refresh{
+	cursor:pointer;
+	@include transition(0.3s);
+	margin-top:$space;
+	margin-left:1px;
+	margin-bottom:$space+1px;
+	&:before{
+		font-size:0.9em;
+		content:"\f01e";
+	}
+	&:hover{
+		color:$color-gray04;
+	}
+} 
+
+#left-float-bottom{
+	cursor:pointer;
+	@include transition(0.3s);
+	&:before{
+		content:"\f01a";
+	}
+	&:hover{
+		color:$color-gray04;
+	}
+} 

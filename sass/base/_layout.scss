@@ -63,6 +63,9 @@ a{
 	width: 10px;
 	height: 6px;
 	border-radius: 3px;
+	@media screen and (max-width: 600px){
+		display:none;
+	}
 }
 ::-webkit-scrollbar-thumb {
 	background: $color-black03;

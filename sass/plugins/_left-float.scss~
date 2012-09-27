@@ -1,0 +1,21 @@
+#left-float{
+	width: 50px;
+	height: 200px;
+	position: fixed;
+	left: 0;
+	top: 200px;
+	background: $color-black02;
+	box-shadow:$border-shdow;
+} 
+
+#left-float-top{
+	
+} 
+
+#left-float-refresh{
+	
+} 
+
+#left-float-bottom{
+	
+} 

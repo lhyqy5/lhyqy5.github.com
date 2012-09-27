@@ -264,7 +264,7 @@
 	border: 4px solid #EEE;
 }
 .gallery2>span{
-	display:none !important;
+	display:none;
 }
 .gallery2 img{
 	//width: 100%;

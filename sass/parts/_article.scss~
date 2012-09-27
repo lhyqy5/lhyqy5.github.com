@@ -80,6 +80,7 @@ article{
 			border-left: #444;
 			padding: 15px 20px;
 			margin-top: 10px;
+			font-style: italic;
 			& > p:first-of-type{
 				margin-top: 0;
 				&:before{
@@ -133,8 +134,8 @@ article{
 
 			}
 			td{
-				border-left:1px solid $color-split1;
-				border-right:1px solid $color-split2;
+				border-left:1px solid $color-split2;
+				border-right:1px solid $color-split1;
 			}
 			tr{
 
